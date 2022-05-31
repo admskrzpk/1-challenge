@@ -5,17 +5,14 @@ object CatsAndDogs {
   def main(args: Array[String]): Unit = {
 
     import org.apache.spark.sql.SparkSession
-    val inputPath = if (args.length > 0) args(0)
-    else "src/main/resources/json"
+    val inputPath = "src/main/resources/json"
 
-    val outputPath = if (args.length > 0) args(1)
-    else "hdfs://localhost:9000/user/admskrzpk/newOutput"
+    val outputPath = if (args.length > 0) args(0)
+    else "hdfs://localhost:9000/exam"
 
     val spark = SparkSession
       .builder()
-/*
-      .master("local[*]")
-*/
+      .master("yarn")
       .getOrCreate()
     import spark.implicits._
 
