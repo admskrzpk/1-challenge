@@ -1,5 +1,5 @@
 # Challenge: 1: Spark, Kafka, Hadoop
-NOTE: app core is working, reading from local json file and writing to parquet file.
+FIXME: for a moment app is reading form local json file. Kafka connection needs to be established. Deploying to yarn and writing to hdfs works.
  Result:
 ```text
 root
@@ -51,9 +51,8 @@ Publish to a github repo
 ## Running HDFS
 * In Hadoop directory run:
 ```sbin/start-dfs.sh```
-* 
 
 ## Deploying on Yarn
 In terminal go to the Spark directory and run command
-```./bin/spark-submit --class <classname> --master yarn \ --<jarpath> args   ```
+```./bin/spark-submit --class <classname> --master yarn --<jarpath> args   ```
 
