@@ -34,32 +34,10 @@ Publish to a github repo
 
 ```
 
-## How to run (macOS)
-
-````
-    cd kafka
-    ./bin/zookeeper-server-start.sh /Users/danielfiedosiuk/kafka/config/zookeeper.properties
-````
-
-- kafka server:
-
-````
-    cd kafka
-    ./bin/kafka-server-start.sh /Users/danielfiedosiuk/kafka/config/server.properties
-````
-
-- read message:
-
- ````
-    cd kafka
-    ./bin/kafka-console-consumer.sh --topic output --from-beginning --bootstrap-server localhost:9092
- ````
-- write message:
-
- ````
-    cd kafka
-    ./bin/kafka-console-producer.sh --topic input --bootstrap-server localhost:9092
- ````
+## Running HDFS
+* In Hadoop directory run:
+```sbin/start-dfs.sh```
+* 
 
 ## Deploying on Yarn
 In terminal go to the Spark directory and run command

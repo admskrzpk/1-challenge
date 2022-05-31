@@ -1,21 +1,21 @@
 import org.apache.spark.sql.functions.upper
-import org.apache.spark.sql.types.{IntegerType, StringType, StructType}
+import org.apache.spark.sql.types.IntegerType
 
 object CatsAndDogs {
-
-
   def main(args: Array[String]): Unit = {
 
     import org.apache.spark.sql.SparkSession
-    val path = if (args.length > 0) args(0)
+    val inputPath = if (args.length > 0) args(0)
     else "src/main/resources/json"
 
-    val output = if (args.length > 0) args(1)
-    else "parquet"
+    val outputPath = if (args.length > 0) args(1)
+    else "hdfs://localhost:9000/user/admskrzpk/newOutput"
 
     val spark = SparkSession
       .builder()
+/*
       .master("local[*]")
+*/
       .getOrCreate()
     import spark.implicits._
 
@@ -23,7 +23,7 @@ object CatsAndDogs {
       .read
       .option("multiline", "true")
       .option("inferSchema", "true")
-      .json(path)
+      .json(inputPath)
     input.printSchema()
 
     val newTable = input
@@ -37,6 +37,6 @@ object CatsAndDogs {
 
     val result = newTable
       .write
-      .parquet(output)
+      .parquet(outputPath)
   }
 }
