@@ -1,4 +1,18 @@
 # Challenge: 1: Spark, Kafka, Hadoop
+NOTE: app core is working, reading from local json file and writing to parquet file.
+ Result:
+```text
+root
+ |-- name: string (nullable = true)
+ |-- surname: string (nullable = true)
+ |-- animals: integer (nullable = true)
+
++----+-------+-------+
+|name|surname|animals|
++----+-------+-------+
+|John|    DOE|      3|
++----+-------+-------+
+```
 
 ## Task:
 ```text
