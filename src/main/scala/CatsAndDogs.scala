@@ -3,10 +3,15 @@ import org.apache.spark.sql.types.{IntegerType, StringType, StructType}
 
 object CatsAndDogs {
 
+
   def main(args: Array[String]): Unit = {
+
     import org.apache.spark.sql.SparkSession
     val path = if (args.length > 0) args(0)
     else "src/main/resources/json"
+
+    val output = if (args.length > 0) args(1)
+    else "parquet"
 
     val spark = SparkSession
       .builder()
@@ -26,22 +31,12 @@ object CatsAndDogs {
       .withColumn("animals", $"cats" + $"dogs")
       .drop($"cats")
       .drop($"dogs")
+      .withColumn("animals", $"animals".cast(IntegerType))
+    newTable.printSchema()
+    newTable.show()
 
     val result = newTable
       .write
-      .parquet("C:\\exam\\challenge-first\\parquet")
-
-    /*val djJSON = input.withColumn("value", from_json(col("value"), schema))
-      .select("jsonData.*")
-
-
-    */
-    // Write back
-    /* .write
-    .
-     .format("kafka")
-     .option("kafka.bootstrap.servers", "localhost:9092")
-     .option("subscribe", "outputTopic")
-     .start()*/
+      .parquet(output)
   }
 }
