@@ -5,7 +5,7 @@ NOTE: app core is working, reading from local json file and writing to parquet f
 root
  |-- name: string (nullable = true)
  |-- surname: string (nullable = true)
- |-- animals: long (nullable = true)
+ |-- animals: integer (nullable = true)
 
 +----+-------+-------+
 |name|surname|animals|
